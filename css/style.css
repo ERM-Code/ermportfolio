@@ -1,0 +1,145 @@
+/* V6 DIARY — replica dello stile maximiliankaspar.com/photos: tutto minuscolo, ascii animato in hero, galleria orizzontale guidata dallo scroll, didascalie = nomi file, hover con zoom + caption invertita, reveal on scroll. */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
+body{background:#0d0d0d;color:#f2f2f2;font-family:Inter,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{color:#000;background:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:hover{background:#fff;color:#000}
+.mono{font-family:'Space Mono',monospace;font-size:12px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+
+/* nav sottile come l'originale */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;background:rgba(13,13,13,.9);backdrop-filter:blur(8px);font-size:15px;line-height:1.4}
+.name:hover{background:#fff;color:#000}
+.pages{display:flex;gap:26px;align-items:center}
+.pages a.on{text-decoration:underline;text-underline-offset:4px}
+.lang-btn{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #555;border-radius:99px;padding:5px 13px;color:inherit;background:transparent;cursor:pointer}
+.lang-btn:hover{background:#fff;color:#000;border-color:#fff}
+
+main{position:relative;z-index:1;padding:64px 0 0}
+
+/* ascii fullscreen dietro tutta la pagina */
+.hero{position:sticky;top:0;z-index:1;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.ascii{position:fixed;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-family:monospace;font-size:9px;line-height:9px;white-space:pre;color:#7d7d7d;opacity:.55;
+  pointer-events:none;user-select:none;margin:0}
+.statement{position:relative;z-index:1;font-family:'Space Mono',monospace;font-size:clamp(19px,3.2vw,34px);line-height:1.45;letter-spacing:0;max-width:1000px;padding:90px 20px 20px;text-shadow:0 1px 0 #000,0 0 18px #000,0 0 46px #000}
+.scroll-hint{position:relative;z-index:1;padding:0 20px 8px;color:#999;text-shadow:0 0 14px #000,0 0 30px #000}
+.ascii-hint{position:relative;z-index:1;padding:0 20px 60px;color:#777;text-shadow:0 0 14px #000,0 0 30px #000}
+
+/* capitolo 02: testo a sinistra, mazzo di poster a destra */
+#ch02{flex-direction:row;align-items:center;justify-content:space-between;gap:5vw}
+#ch02 .chtext{flex:1 1 auto;min-width:0}
+.pside{flex:0 0 auto;width:41svh;max-width:46vw;height:54vh;height:54svh;margin-right:10vw;display:flex;flex-direction:column}
+.deck{position:relative;flex:1;min-height:0}
+.pcard{position:absolute;bottom:0;left:50%;height:100%;width:auto;max-width:none;
+  box-shadow:0 16px 44px rgba(0,0,0,.55);transform-origin:bottom center;
+  transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.ps-front{transform:translateX(-52%);z-index:3}
+.ps-left{transform:translateX(-90%) rotate(-8deg);z-index:1}
+.ps-right{transform:translateX(-32%) rotate(8deg);z-index:2}
+.ps-front:hover{transform:translateX(-52%) scale(1.05)}
+.ps-left:hover{transform:translateX(-90%) rotate(-8deg) scale(1.05);z-index:4}
+.ps-right:hover{transform:translateX(-32%) rotate(8deg) scale(1.05);z-index:4}
+.seeall{margin-top:14px;text-align:center;color:#999}
+
+/* capitolo statico: sticky, la sezione sopra sfuma mentre questa sale */
+.chapter{position:sticky;top:0;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.chapter-head{padding:0 20px;color:#999}
+.chapter-text{font-family:'Space Mono',monospace;font-size:clamp(19px,2.6vw,28px);line-height:1.5;max-width:36ch;padding:18px 20px 0;color:#eee;text-shadow:0 1px 0 #000,0 0 18px #000}
+
+/* pallino che inverte i colori e segue il cursore su tutto il sito */
+.cursor-dot{position:fixed;top:0;left:0;z-index:200;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  background:#fff;mix-blend-mode:difference;pointer-events:none;opacity:0;
+  transition:opacity .25s,width .25s,height .25s,margin .25s}
+.cursor-dot.on{opacity:1}
+.cursor-dot.big{width:72px;height:72px;margin:-36px 0 0 -36px}
+@media (hover:hover){
+  body, body a, body button, body .ashot, body .ashot *{cursor:none}
+}
+@media (hover:none){.cursor-dot{display:none}}
+
+/* outro: contenuto ancorato in basso, vicino al footer */
+.outro{position:relative;z-index:3;min-height:calc(100vh - 152px);min-height:calc(100svh - 152px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 20px;gap:8px}
+.outro > p:first-of-type{border-top:1px solid #444;padding-top:16px}
+.outro a{text-decoration:underline;text-underline-offset:3px}
+footer{padding:16px 20px 60px;display:grid;gap:4px;font-family:'Space Mono',monospace;font-size:12px}
+
+/* archivio: palco fullscreen, un poster alla volta */
+.archive{position:relative;z-index:1}
+.archive-tabs{position:sticky;top:64px;z-index:40;display:flex;justify-content:center;gap:24px;padding:10px 20px;color:#999;font-family:'Space Mono',monospace}
+.archive-tabs a{display:inline-block;padding:2px 6px}
+.archive-tabs a:hover,.archive-tabs a:focus-visible,.archive-tabs a[aria-current="page"]:hover{background:#fff;color:#000}
+.archive-tabs a[aria-current="page"]{color:#fff}
+.archive-tabs a:focus-visible{outline:1px solid #fff;outline-offset:4px}
+.portfolio-section[hidden]{display:none!important}
+.apin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;overflow:hidden;padding:78px 0 0}
+.atitle{font-family:'Space Mono',monospace;font-size:21px;padding:0 20px;min-height:1.3em}
+.ahead{display:flex;justify-content:space-between;padding:8px 20px 0;color:#999}
+.ashots{position:relative;flex:1;min-height:0}
+.ashot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;will-change:transform,opacity;cursor:pointer}
+.ashot .sph{will-change:transform}
+.ashot img{height:74vh;height:74svh;width:auto;max-width:92vw;object-fit:contain;background:#161616}
+.ashot figcaption{font-family:'Space Mono',monospace;font-size:12px;margin-top:12px;color:#eee}
+.abar{margin:12px 20px 16px;height:1px;background:#2b2b2b;position:relative}
+.abar .fill{position:absolute;left:0;top:-1px;height:3px;width:0;background:#fff}
+.photo-stage,.sites-stage{position:relative;z-index:1;min-height:calc(100vh - 128px);min-height:calc(100svh - 128px);padding:20px 20px 40px;font-family:'Space Mono',monospace}
+.photo-pin{max-width:1200px;margin:0 auto}
+.photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px;margin-top:22px}
+.photo-item{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:10px;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:zoom-in}
+.photo-item:hover{background:transparent;color:#fff}
+.photo-item img{width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 16px 44px rgba(0,0,0,.35);transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.photo-item:hover img{transform:scale(1.02)}
+.photo-item span{color:#999;font-size:12px}
+.sites-stage{display:flex;align-items:center}
+.sites-content{width:100%;max-width:760px;margin:0 auto}
+.sites-content .atitle{padding:0 0 12px}
+.sites-content p.mono{color:#999}
+.sites-description{margin-top:12px;color:#bbb;font-family:inherit}
+/* fallback senza animazioni: pila verticale semplice */
+.astage.native{height:auto!important}
+.astage.native .apin{position:static;height:auto;padding:110px 0 40px}
+.astage.native .ashot{position:static;opacity:1!important;margin-bottom:48px}
+
+/* lightbox minimale */
+.lightbox{position:fixed;inset:0;z-index:100;background:#0d0d0d;display:flex;flex-direction:column;padding:14px;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lb-top{display:flex;justify-content:space-between;padding:6px 4px;color:#999}
+.lb-top button{border:1px solid #fff;background:none;color:#fff;font:inherit;padding:8px 16px;cursor:pointer}
+.lb-top button:hover{background:#fff;color:#000}
+.lightbox img{max-height:78vh;max-height:78svh;object-fit:contain;margin:auto;background:#161616}
+.lb-spec{text-align:center;padding:10px;color:#999}
+
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none}
+  .hero,.chapter{position:static}
+  .pcard{transition:none}
+}
+@media (max-width:640px){
+  #ch01,#ch02{min-height:100vh;min-height:100svh}
+  .pages{gap:14px}
+  .nav{padding:14px}
+  .archive-tabs{top:56px;gap:18px;padding:9px 14px}
+  .photo-stage,.sites-stage{min-height:calc(100vh - 112px);min-height:calc(100svh - 112px);padding:18px 14px 32px}
+  .photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .photo-item span{font-size:10px;overflow-wrap:anywhere}
+  .chapter{position:sticky;top:50%;transform:translateY(-50%);min-height:68vh;min-height:68svh;justify-content:center;padding-top:12vh;padding-bottom:12vh}
+  #ch02{flex-direction:column;justify-content:center;gap:16px;align-items:flex-start;min-height:68vh;min-height:68svh}
+  #ch02 .chtext{order:1;flex:0 0 auto;width:min(620px,90vw);min-width:0}
+  .chapter-head{padding-left:20px}
+  .chapter-text{max-width:32ch;padding-left:20px;font-size:clamp(17px,4.4vw,20px)}
+  .pside{order:2;width:min(360px,78vw);max-width:360px;height:clamp(220px,28vh,340px);margin:0 auto;align-self:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .deck{position:relative;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+  .pcard{position:absolute;bottom:0;left:50%;height:100%;width:auto;max-width:none;transform-origin:center bottom}
+  .ps-front{transform:translateX(-50%);z-index:3}
+  .ps-left{transform:translateX(-94%) rotate(-8deg);z-index:1}
+  .ps-right{transform:translateX(-6%) rotate(8deg);z-index:2}
+  .ps-front:hover{transform:translateX(-50%) scale(1.04)}
+  .ps-left:hover{transform:translateX(-94%) rotate(-8deg) scale(1.04);z-index:4}
+  .ps-right:hover{transform:translateX(-6%) rotate(8deg) scale(1.04);z-index:4}
+}

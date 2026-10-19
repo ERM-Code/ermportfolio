@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>archivio — erm</title>
+  <meta name="description" content="poster, fotografie e siti di Emanuele." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
+</head>
+<body data-page="archive">
+  <pre class="ascii" id="ascii" aria-hidden="true"></pre>
+
+  <header class="nav">
+    <a class="name" href="index.html">erm<br /></a>
+    <nav class="pages"><a href="index.html" data-i18n="nav_works">home</a><a href="archivio.html" class="on" data-i18n="nav_archivio">archivio</a><button id="lang" class="lang-btn" aria-label="switch language">en</button></nav>
+  </header>
+
+  <main>
+    <nav class="archive-tabs mono" aria-label="categorie portfolio">
+      <a href="#astage" data-i18n="archive_posters">poster</a>
+      <a href="#photography" data-i18n="archive_photography">fotografia</a>
+      <a href="#websites" data-i18n="archive_websites">siti</a>
+    </nav>
+
+    <section class="archive portfolio-section" id="astage" data-category-section>
+      <div class="apin">
+        <h1 class="atitle" data-i18n="archive_h1">Poster</h1>
+        <div class="ahead mono"><span data-i18n="archive_hint">scorri — un poster alla volta</span><span id="acount">01 / 07</span></div>
+        <div class="ashots" id="agrid"></div>
+        <div class="abar"><span class="fill" id="afill"></span></div>
+      </div>
+    </section>
+
+    <section class="photo-stage portfolio-section" id="photography" data-category-section hidden>
+      <div class="photo-pin">
+        <h2 class="atitle" data-i18n="photo_h1">Fotografia</h2>
+        <div class="ahead mono"><span data-i18n="photo_hint">uno sguardo dal vivo</span><span id="photocount">01 / 01</span></div>
+        <div class="photo-grid" id="photogrid"></div>
+      </div>
+    </section>
+
+    <section class="sites-stage portfolio-section" id="websites" data-category-section hidden>
+      <div class="sites-content">
+        <h2 class="atitle" data-i18n="sites_h1">Siti</h2>
+        <p class="mono" data-i18n="sites_empty">nuovi progetti in arrivo</p>
+        <p class="sites-description" data-i18n="sites_description">Qui troverai i siti e i progetti web che ho realizzato.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p data-i18n="footer_made">disegnato e sviluppato da me</p>
+      <p>©<span id="year">2026</span></p>
+    </footer>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-top mono"><span id="lb-title">—</span><button id="lb-close" data-i18n="lb_close">chiudi ✕</button></div>
+    <img id="lb-img" src="" alt="poster fullscreen" />
+    <p class="mono lb-spec" id="lb-spec">—</p>
+  </div>
+
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <script src="js/data.js?v=3"></script>
+  <script src="js/main.js?v=5"></script>
+</body>
+</html>

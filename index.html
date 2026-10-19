@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>home — erm</title>
+  <meta name="description" content="chi sono — scrivo codice e creo poster. questo è il mio spazio online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
+</head>
+<body data-page="index">
+  <pre class="ascii" id="ascii" aria-hidden="true"></pre>
+
+  <header class="nav">
+    <a class="name" href="#top">erm<br /></a>
+    <nav class="pages"><a href="#top" class="on" data-i18n="nav_works">home</a><a href="archivio.html" data-i18n="nav_archivio">archivio</a><button id="lang" class="lang-btn" aria-label="switch language">en</button></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <p class="statement rv" data-i18n="statement">sono emanuele, questo è il mio sito: un po' di chi sono e di cosa faccio.</p>
+      <p class="mono ascii-hint rv" data-i18n="ascii_hint">psst — muovi il mouse e clicca sullo sfondo</p>
+    </section>
+
+    <section class="chapter" id="ch01">
+      <p class="mono chapter-head rv" data-i18n="r1_head">capitolo 01 — codice</p>
+      <p class="chapter-text rv" data-i18n="r1_p1">mi piace scrivere codice e creare siti, con particolare attenzione a estetica e dettagli.</p>
+    </section>
+
+    <section class="chapter" id="ch02">
+      <div class="chtext">
+        <p class="mono chapter-head rv" data-i18n="r2_head">capitolo 02 — motori e edit</p>
+        <p class="chapter-text rv" data-i18n="r2_p1">mi piacciono auto e moto, e le uso come soggetto per i miei edit: fotoritocco, giochi di luce e poster.</p>
+      </div>
+      <div class="pside rv">
+        <div class="deck">
+          <img class="pcard ps-left" src="img/Mustang_poster-preview.webp" alt="mustang" loading="lazy" />
+          <img class="pcard ps-right" src="img/BMW_NFS-preview.webp" alt="bmw m3 gtr" loading="lazy" />
+          <img class="pcard ps-front" src="img/corvetteC7_z06_poster-preview.webp" alt="corvette c7 z06" loading="lazy" />
+        </div>
+        <p class="mono seeall"><a href="archivio.html" data-i18n="see_all">guardali tutti →</a></p>
+      </div>
+    </section>
+
+    <section class="outro" id="outroSec">
+      <p class="mono rv" data-i18n="outro_ask">ti piacciono i miei lavori? scrivimi!</p>
+      <p class="mono rv"><a href="https://instagram.com" target="_blank" rel="noopener">instagram</a></p>
+    </section>
+
+    <footer>
+      <p data-i18n="footer_made">disegnato e sviluppato da me</p>
+      <p>©<span id="year">2026</span></p>
+    </footer>
+  </main>
+
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <script src="js/data.js?v=3"></script>
+  <script src="js/main.js?v=5"></script>
+</body>
+</html>
